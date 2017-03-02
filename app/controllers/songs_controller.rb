@@ -7,6 +7,9 @@ class SongsController < ApplicationController
     @songs = Song.all
   end
 
+  def Add
+    
+  end
   # GET /songs/1
   # GET /songs/1.json
   def show
@@ -25,7 +28,8 @@ class SongsController < ApplicationController
   # POST /songs.json
   def create
     @song = Song.new(song_params)
-
+    @users = User.find(song_params[current_user.id])
+    @song.users << @users
     respond_to do |format|
       if @song.save
         format.html { redirect_to @song, notice: 'Song was successfully created.' }
@@ -69,6 +73,6 @@ class SongsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def song_params
-      params.require(:song).permit(:name, :duration, :genre_id)
+      params.require(:song).permit(:name, :duration, :genre_id, :user_id)
     end
 end

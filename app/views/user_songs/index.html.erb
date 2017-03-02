@@ -1,0 +1,17 @@
+<table>
+  <thead>
+    <tr>
+      <th>Song</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @user_songs.each do |song| %>
+      <tr>
+        <td><%= song.song.name %></td>
+        <td><%= 'Borrar' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
